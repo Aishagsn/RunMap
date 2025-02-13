@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		29B3C8D52D5DF36D002189A7 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 29B3C8D42D5DF36D002189A7 /* Supabase */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		29B3C8442D59D7F5002189A7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -29,9 +33,22 @@
 		29B3C84D2D59D7F5002189A7 /* RunMapUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RunMapUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		29B3C8D92D5DF8A6002189A7 /* Exceptions for "RunMap" folder in "RunMap" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 29B3C8322D59D7F3002189A7 /* RunMap */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		29B3C8352D59D7F3002189A7 /* RunMap */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				29B3C8D92D5DF8A6002189A7 /* Exceptions for "RunMap" folder in "RunMap" target */,
+			);
 			path = RunMap;
 			sourceTree = "<group>";
 		};
@@ -52,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29B3C8D52D5DF36D002189A7 /* Supabase in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +130,7 @@
 			);
 			name = RunMap;
 			packageProductDependencies = (
+				29B3C8D42D5DF36D002189A7 /* Supabase */,
 			);
 			productName = RunMap;
 			productReference = 29B3C8332D59D7F3002189A7 /* RunMap.app */;
@@ -195,6 +214,9 @@
 			);
 			mainGroup = 29B3C82A2D59D7F3002189A7;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				29B3C8D32D5DF36D002189A7 /* XCRemoteSwiftPackageReference "supabase-swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 29B3C8342D59D7F3002189A7 /* Products */;
 			projectDirPath = "";
@@ -398,6 +420,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"RunMap/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RunMap/Info.plist;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Please allow access to enjoy our app";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Please allow access to enjoy our app";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -428,6 +451,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"RunMap/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RunMap/Info.plist;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Please allow access to enjoy our app";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Please allow access to enjoy our app";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -556,6 +580,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		29B3C8D32D5DF36D002189A7 /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase/supabase-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		29B3C8D42D5DF36D002189A7 /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29B3C8D32D5DF36D002189A7 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Supabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 29B3C82B2D59D7F3002189A7 /* Project object */;
 }
