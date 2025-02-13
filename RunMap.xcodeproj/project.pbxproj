@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		29B3C8D52D5DF36D002189A7 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 29B3C8D42D5DF36D002189A7 /* Supabase */; };
+		29B3C8DE2D5E06FB002189A7 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B3C8DD2D5E06FB002189A7 /* DatabaseService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +32,7 @@
 		29B3C8332D59D7F3002189A7 /* RunMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29B3C8432D59D7F5002189A7 /* RunMapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RunMapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		29B3C84D2D59D7F5002189A7 /* RunMapUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RunMapUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		29B3C8DD2D5E06FB002189A7 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -93,6 +95,7 @@
 		29B3C82A2D59D7F3002189A7 = {
 			isa = PBXGroup;
 			children = (
+				29B3C8DD2D5E06FB002189A7 /* DatabaseService.swift */,
 				29B3C8352D59D7F3002189A7 /* RunMap */,
 				29B3C8462D59D7F5002189A7 /* RunMapTests */,
 				29B3C8502D59D7F5002189A7 /* RunMapUITests */,
@@ -258,6 +261,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29B3C8DE2D5E06FB002189A7 /* DatabaseService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
