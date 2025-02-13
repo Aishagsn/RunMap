@@ -48,8 +48,10 @@ struct RunView: View {
             
             HStack {
                 Button {
-                    runTracker.stopRun()
-                       AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) { }
+                    withAnimation {
+                        runTracker.stopRun()
+                        AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) { }
+                    }
                 } label: {
                     Image(systemName: "stop.fill")
                         .font(.largeTitle)
@@ -61,13 +63,9 @@ struct RunView: View {
                 .frame(maxWidth: .infinity)
 
                 Button {
-                    if runTracker.isRunning {
                         runTracker.pauseRun()
-                    } else {
-                        runTracker.resumeRun()
-                    }
                 } label: {
-                    Image(systemName: runTracker.isRunning ? "pause.fill": "play.fill")
+                    Image(systemName: "pause.fill")
                         .font(.largeTitle)
                         .foregroundStyle(.white)
                         .padding(36)

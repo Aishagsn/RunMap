@@ -58,6 +58,10 @@ struct HomeView: View {
                 RunView()
                     .environmentObject(runTracker)
             })
+            .fullScreenCover(isPresented: $runTracker.presentPauseView, content: {
+                PauseView()
+                    .environmentObject(runTracker)
+            })
         }
     }
 }

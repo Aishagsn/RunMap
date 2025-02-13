@@ -8,6 +8,7 @@
 import Foundation
 import MapKit
 
+//@Observable
 class RunTracker: NSObject, ObservableObject {
     @Published var region = MKCoordinateRegion(center: .init(latitude: 40.390098, longitude: 49.861414), span: .init(latitudeDelta: 0.01, longitudeDelta: 0.01))
     
@@ -15,6 +16,7 @@ class RunTracker: NSObject, ObservableObject {
      = false
     @Published var presentCountdown = false
     @Published var presentRunView = false
+    @Published var presentPauseView = false
     @Published var pace = 0.0
     @Published var distance = 0.0
     @Published var elapsedTime = 0
@@ -58,6 +60,8 @@ class RunTracker: NSObject, ObservableObject {
     
     func resumeRun() {
         isRunning = true
+        presentPauseView = false
+        presentRunView = true
         startlocation = nil
         lastLocation = nil
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
@@ -73,16 +77,19 @@ class RunTracker: NSObject, ObservableObject {
     
     func pauseRun() {
         isRunning = false
+        presentRunView = false
+        presentPauseView = true
         locationManager?.stopUpdatingLocation()
         timer?.invalidate()
     }
     
     func stopRun() {
         isRunning = false
+        presentRunView = false
+        presentPauseView = false
         locationManager?.stopUpdatingLocation()
         timer?.invalidate()
         timer = nil
-        presentRunView = false
     }
 }
 
