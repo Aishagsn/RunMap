@@ -90,6 +90,19 @@ class RunTracker: NSObject, ObservableObject {
         locationManager?.stopUpdatingLocation()
         timer?.invalidate()
         timer = nil
+        postToDatabase()
+    }
+    
+    func postToDatabase() {
+        Task {
+            do {
+                guard let userId = AuthService.shared.currentSesion?.user.id else { return }
+                let run = RunPayload(createdAt: .now, userId: userId, distance: distance, pace: pace, time: elapsedTime)
+                try await DatabaseService.shared.saveWorkout(run: run)
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
     }
 }
 

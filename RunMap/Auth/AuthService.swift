@@ -9,8 +9,8 @@ import Foundation
 import Supabase
 
 struct Secrets {
-    static let supbaseURL = URL(string: "https://pqbaaazoqcclwhhcwuxa.supabase.co")!
-    static let supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBxYmFhYXpvcWNjbHdoaGN3dXhhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk0Mzk1ODEsImV4cCI6MjA1NTAxNTU4MX0.YwdyrZ0J1clSJmPuF56uVAae2biyi9eF29BpqH_PYWs"
+    static let supbaseURL = URL(string: "https://sknizpprtmsnwkfpvspg.supabase.co")!
+    static let supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNrbml6cHBydG1zbndrZnB2c3BnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk3ODU4MzIsImV4cCI6MjA1NTM2MTgzMn0.X9bSJJSaLHFmYd9rmjZaKa0ZJmRnjxZyLajwK_WNsYs"
 }
 
 @Observable
