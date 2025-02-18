@@ -19,12 +19,18 @@ struct RunPayload: Identifiable, Codable {
     var distance: Double
     var pace: Double
     var time: Int
+    let route: [GeoJSONCoordinate]
     
     enum CodingKeys: String, CodingKey {
-        case id, distance, pace, time
+        case id, distance, pace, time, route
         case createdAt = "created_at"
         case userId = "user_id"
     }
+}
+
+struct GeoJSONCoordinate: Codable {
+    let longtitude: Double
+    let latitude: Double
 }
 
 final class DatabaseService {
@@ -48,3 +54,4 @@ final class DatabaseService {
         
     }
 }
+

@@ -20,6 +20,7 @@ class RunTracker: NSObject, ObservableObject {
     @Published var pace = 0.0
     @Published var distance = 0.0
     @Published var elapsedTime = 0
+    @Published var locations = [CLLocationCoordinate2D]()
     
     private var timer: Timer?
     
@@ -97,7 +98,7 @@ class RunTracker: NSObject, ObservableObject {
         Task {
             do {
                 guard let userId = AuthService.shared.currentSesion?.user.id else { return }
-                let run = RunPayload(createdAt: .now, userId: userId, distance: distance, pace: pace, time: elapsedTime)
+                let run = RunPayload(createdAt: .now, userId: userId, distance: distance, pace: pace, time: elapsedTime, route: convertToGeoJSONCoordinates(locations: locations))
                 try await DatabaseService.shared.saveWorkout(run: run)
             } catch {
                 print(error.localizedDescription)
@@ -122,6 +123,8 @@ extension RunTracker: CLLocationManagerDelegate {
             }
         }
         
+        self.locations.append(location.coordinate)
+        
         if startlocation == nil {
             startlocation = location
             lastLocation = location
@@ -133,4 +136,8 @@ extension RunTracker: CLLocationManagerDelegate {
         }
         lastLocation = location
     }
+}
+
+func convertToGeoJSONCoordinates(locations: [CLLocationCoordinate2D]) -> [GeoJSONCoordinate] {
+    return locations.map { GeoJSONCoordinate(longtitude: $0.longitude, latitude: $0.latitude) }
 }

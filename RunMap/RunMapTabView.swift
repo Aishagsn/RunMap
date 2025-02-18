@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RunMapTabView: View {
     @State var selectedTab = 0
+    
     var body: some View {
         TabView(selection: $selectedTab) {
             HomeView().tag(0)
@@ -18,6 +19,13 @@ struct RunMapTabView: View {
                     Text("Run")
                 }
             
+            ActivityView()
+                .tag(1)
+                .tabItem {
+                    Image(systemName: "chart.bar.fill")
+                    
+                    Text("Activity")
+                }
         }
     }
 }
