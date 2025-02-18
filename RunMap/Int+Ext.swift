@@ -34,11 +34,11 @@ extension Int {
         if (minute == 0) {
             return "00:"
         }
-
+        
         if (minute < 10) {
             return "0\(minute):"
         }
-
+        
         return "\(minute):"
     }
     
@@ -46,7 +46,7 @@ extension Int {
         if (second == 0){
             return "00"
         }
-
+        
         if (second < 10) {
             return "0\(second)"
         }

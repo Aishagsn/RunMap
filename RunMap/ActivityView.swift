@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ActivityView: View {
     @State var activities = [RunPayload]()
- 
+    
     var body: some View {
         NavigationStack {
             List {
@@ -58,7 +58,7 @@ struct ActivityView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         
                     }
-
+                    
                 }
             }
             .listStyle(.plain)

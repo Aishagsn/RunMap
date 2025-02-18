@@ -92,7 +92,7 @@ struct PauseView: View {
                         .clipShape(Circle())
                 }
                 .frame(maxWidth: .infinity)
-
+                
                 Button {
                     withAnimation {
                         runTracker.resumeRun()

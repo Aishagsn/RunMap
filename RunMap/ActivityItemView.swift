@@ -62,7 +62,7 @@ struct ActivityItemView: View {
     func convertRouteToCoordinates(geoJSON: [GeoJSONCoordinate]) -> [CLLocationCoordinate2D] {
         return geoJSON.map { CLLocationCoordinate2D(latitude: $0.latitude, longitude: $0.longtitude)}
     }
-
+    
 }
 
 #Preview {

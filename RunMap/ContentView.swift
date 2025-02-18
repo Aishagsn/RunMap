@@ -8,11 +8,22 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var isRegistered = false
+    @State private var isLoggedIn = false
+    
     var body: some View {
-        if let session = AuthService.shared.currentSesion {
-            RunMapTabView()
-        } else {
-            LoginView()
+        NavigationView {
+            if isLoggedIn {
+                RunMapTabView()
+            } else if isRegistered {
+                LoginView(onLoginSuccess: {
+                    isLoggedIn = true
+                })
+            } else {
+                RegisterView(onRegisterSuccess: {
+                    isRegistered = true
+                })
+            }
         }
     }
 }

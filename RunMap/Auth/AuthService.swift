@@ -27,16 +27,12 @@ final class AuthService {
         }
     }
     
-    func magicLinkLogin(email: String) async throws {
-        try await supabase.auth.signInWithOTP(
-            email: email,
-            redirectTo: URL(string: "com.run-map-fll://login-callback")!
-            
-            
-        )
+    func register(email: String, password: String) async throws {
+        try await supabase.auth.signUp(email: email, password: password)
     }
-    func handleOpenURL(url: URL) async throws {
-        currentSesion = try await supabase.auth.session(from: url)
+    
+    func login(email: String, password: String) async throws {
+        try await supabase.auth.signIn(email: email, password: password)
     }
     
     func logout() async throws {

@@ -13,7 +13,7 @@ class RunTracker: NSObject, ObservableObject {
     @Published var region = MKCoordinateRegion(center: .init(latitude: 40.390098, longitude: 49.861414), span: .init(latitudeDelta: 0.01, longitudeDelta: 0.01))
     
     @Published var isRunning
-     = false
+    = false
     @Published var presentCountdown = false
     @Published var presentRunView = false
     @Published var presentPauseView = false
@@ -108,7 +108,7 @@ class RunTracker: NSObject, ObservableObject {
 }
 
 
-   // MARK: Location Tracking
+// MARK: Location Tracking
 extension RunTracker: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }

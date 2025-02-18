@@ -61,9 +61,9 @@ struct RunView: View {
                         .clipShape(Circle())
                 }
                 .frame(maxWidth: .infinity)
-
+                
                 Button {
-                        runTracker.pauseRun()
+                    runTracker.pauseRun()
                 } label: {
                     Image(systemName: "pause.fill")
                         .font(.largeTitle)
