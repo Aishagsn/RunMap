@@ -9,7 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var isRegistered = false
-    @State private var isLoggedIn = false
+//    @State private var isLoggedIn = false
+    @AppStorage("isLoggedIn") private var isLoggedIn = false
     
     var body: some View {
         NavigationView {

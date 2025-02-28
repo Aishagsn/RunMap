@@ -49,6 +49,7 @@ class RunTracker: NSObject, ObservableObject {
         lastLocation = nil
         distance = 0.0
         pace = 0.0
+        elapsedTime = 0
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
             guard let self else { return }
             self.elapsedTime += 1

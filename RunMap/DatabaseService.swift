@@ -43,15 +43,65 @@ final class DatabaseService {
     
     //CRUD
     
-    //Create
+//    //Create
+//    func saveWorkout(run: RunPayload) async throws {
+//        let _ = try await supabase.from(Table.workouts).insert(run).execute().value
+//    }
+//    
+//    //Reading
+//    func fetchWorkouts(for userId: UUID)  async throws -> [RunPayload] {
+//        return try await supabase.from(Table.workouts).select().in("user_id", values: [userId]).execute().value
+//        
+//    }
+    
     func saveWorkout(run: RunPayload) async throws {
-        let _ = try await supabase.from(Table.workouts).insert(run).execute().value
+        do {
+            let _ = try await supabase.from(Table.workouts).insert(run).execute().value
+            print("Workout successfully saved")
+        } catch {
+            print("Error saving workout: \(error.localizedDescription)")
+            throw error
+        }
     }
     
-    //Reading
-    func fetchWorkouts()  async throws -> [RunPayload] {
-        return try await supabase.from(Table.workouts).select().execute().value
-        
+//    func fetchWorkouts(for userId: UUID) async throws -> [RunPayload] {
+//        let response = try await supabase
+//            .from(Table.workouts)
+//            .select()
+//            .in("user_id", values: [userId])
+//            .execute()
+//
+//        guard let data = response.value as? [RunPayload] else {
+//            throw NSError(domain: "SupabaseError", code: -1, userInfo: [NSLocalizedDescriptionKey: "Failed to parse workouts"])
+//        }
+//        
+//        return data
+//    }
+    func fetchWorkouts(for userId: UUID) async throws -> [RunPayload] {
+        do {
+            let response = try await supabase
+                .from(Table.workouts)
+                .select()
+                .eq("user_id", value: userId)
+                .execute()
+            
+            print("Raw Supabase Response: \(response)")
+
+            let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            decoder.dateDecodingStrategy = .iso8601
+            
+            let workouts = try decoder.decode([RunPayload].self, from: response.data)
+
+            return workouts
+        } catch {
+            print("Error fetching workouts: \(error.localizedDescription)")
+            throw error
+        }
     }
+
+
+
+
 }
 
