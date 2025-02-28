@@ -13,7 +13,7 @@ struct ActivityItemView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Morning Run")
+            Text(run.createdAt.timeOfDayString())
                 .font(.title3)
                 .bold()
             
@@ -65,6 +65,6 @@ struct ActivityItemView: View {
     
 }
 
-#Preview {
-    ActivityItemView(run: RunPayload(createdAt: .now, userId: .init(), distance: 1234, pace: 123, time: 123, route: []))
-}
+//#Preview {
+//    ActivityItemView(run: RunPayload(createdAt: .now, userId: .init(), distance: 1234, pace: 123, time: 123, route: []))
+//}

@@ -17,9 +17,18 @@ struct Secrets {
 final class AuthService {
     
     static let shared = AuthService()
-    private var supabase = SupabaseClient(supabaseURL: Secrets.supbaseURL, supabaseKey: Secrets.supabaseKey)
+    public var supabase = SupabaseClient(supabaseURL: Secrets.supbaseURL, supabaseKey: Secrets.supabaseKey)
     
     var currentSesion: Session?
+    
+    func restoreSession() async {
+        do {
+            self.currentSesion = try await supabase.auth.session
+            print("Sessiya bərpa olundu: \(self.currentSesion as Any)")
+        } catch {
+            print("Sessiyanı bərpa edərkən xəta baş verdi: \(error.localizedDescription)")
+        }
+    }
     
     private init () {
         Task {
@@ -40,3 +49,4 @@ final class AuthService {
         currentSesion = nil
     }
 }
+

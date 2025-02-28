@@ -8,24 +8,22 @@
 import SwiftUI
 
 struct ActivityView: View {
-    @State private var activities = [RunPayload]()
+    @StateObject private var viewModel = ActivityViewModel()
+    @State private var isLoading = true
     
     var body: some View {
         NavigationStack {
             Group {
-                if activities.isEmpty {
-                    Text("No Activities Yet")
-                        .font(.title3)
-                        .foregroundColor(.gray)
-                        .padding()
+                if isLoading {
+                    ProgressView("Verifying session...")
                 } else {
                     List {
-                        ForEach(activities) { run in
+                        ForEach(viewModel.activities) { run in
                             NavigationLink {
                                 ActivityItemView(run: run)
                             } label: {
                                 VStack(alignment: .leading) {
-                                    Text("Morning Run")
+                                    Text(run.createdAt.timeOfDayString())
                                         .font(.title3)
                                         .bold()
                                     
@@ -46,7 +44,7 @@ struct ActivityView: View {
                                             Text("Pace")
                                                 .font(.caption)
                                             
-                                            Text("\(Int(run.pace).convertDurationToString()) /km")
+                                            Text("\(run.pace, specifier: "%.2f") min")
                                                 .font(.headline)
                                                 .bold()
                                         }
@@ -85,49 +83,40 @@ struct ActivityView: View {
                         }
                     }
                     .onAppear {
-                        loadActivitiesFromSupabase()
+                        Task {
+                            
+                            do {
+                                guard let userId = AuthService.shared.currentSesion?.user.id else { return }
+                                viewModel.activities = try await
+                                DatabaseService.shared.fetchWorkouts(for: userId)
+                                viewModel.activities.sort(by: { $0.createdAt >= $1.createdAt })
+                                
+                            } catch {
+                                print(error.localizedDescription)
+                            }
+                            await viewModel.loadActivities()
+                        }
+                        
                     }
                 }
             }
         }
-    }
-    
-    private func loadActivitiesFromSupabase() {
-        Task {
-            do {
-                guard let userId = AuthService.shared.currentSesion?.user.id else { return }
-                activities = try await DatabaseService.shared.fetchWorkouts(for: userId)
-                activities.sort(by: { $0.createdAt >= $1.createdAt })
-            } catch {
-                print(error.localizedDescription)
-            }
+        .task {
+            await checkSessionBeforeLoading()
         }
     }
-}
-#Preview {
-    ActivityView()
+   
+        func checkSessionBeforeLoading() async {
+            while AuthService.shared.currentSesion == nil {
+                try? await Task.sleep(nanoseconds: 500_000_000)
+            }
+            isLoading = false
+            await viewModel.loadActivities()
+        }
 }
 
-//        NavigationStack {
-//            List {
-//                ForEach(activities) { run in
-//                    NavigationLink {
-//                        ActivityItemView(run: run)
-//                    } label: {
-//                        VStack(alignment: .leading) {
-//                            Text("Morning Run")
-//                                .font(.title3)
-//                                .bold()
-//
-//                            Text(run.createdAt.formatDate())
-//                                .font(.caption)
-//
-//                            HStack(spacing: 24) {
-//                                VStack(alignment: .leading) {
-//                                    Text("Distance")
-//                                        .font(.caption)
-//
-//                                    Text("\(run.distance / 1000, specifier: "%.2f") km")
-//                                        .font(.headline)
-//                                        .bold()
-//                                }
+
+
+//#Preview {
+//    ActivityView()
+//}

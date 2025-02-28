@@ -20,8 +20,8 @@ struct AreaMap: View {
                 }
             }
         )
-        return Map(coordinateRegion: binding)
-            .ignoresSafeArea()
+        return Map(coordinateRegion: binding, showsUserLocation: true)
+            .ignoresSafeArea(.all, edges: .top)
     }
 }
 
